@@ -10,6 +10,39 @@ const BACKGROUND_IMAGES = [
   '/hero3.png',
   '/florida.png',
 ]
+const TEAM_MEMBERS = [
+  {
+    name: 'Seth Matthew, ESQ.',
+    role: 'Escrow Managing Director',
+    image: '/seth-matthew.jpeg',
+    bio: [
+      'Seth is an experienced leader in the field of real estate law who has a strong work ethic and a mindset of service excellence. Seth was born in New York but grew up in Florida where he earned his bachelor\'s degree from The University of Florida and his Juris Doctorate Degree from St. Thomas University School of Law. Seth has been a member in good standing of the Florida Bar since 1994.',
+      'In addition to the practice of law, Seth owned and operated several title insurance companies specializing in both residential and commercial transactions where he developed his expertise in business operations and fostering staff and client relations.',
+      'Seth is skilled in the areas of settlement negotiations, contract and addenda preparation and review, realtor transactional support, probate, foreclosure matters, and the reviewing and clearing title issues. Seth has been married to his beautiful wife Sharry for 33 years and they have two sons, Daniel, and Jonathan.',
+    ],
+  },
+  {
+    name: 'Ben Finley',
+    role: 'Director of Sales and Marketing',
+    image: '/ben-finley.png',
+    bio: [
+      'Ben has been living in South Florida since 2001 and has been in the title industry since 2013. Originally from Indiana, he is a graduate of Indiana University and a die hard Indiana Hoosier fan. When he is not at the closing table, chances are you will find him on a golf course.',
+      'A competitive golfer since he was 8 years old, Ben continues to play in golf tournaments throughout the state of Florida when his schedule permits. Ben has extensive knowledge and experience in the areas of residential and commercial closings, for sale by-owner transactions, short sales, investor transactions and refinances.',
+      'He is a notary public and prides himself on closing all of his transactions. Ben believes that constant communication throughout the transaction is the key to a successful closing.',
+      '"The longer I live, the more I realize that the true mark you can leave on this world is by how many people you have helped along the way. Helping people achieve the American Dream and guiding them through the closing process is a true blessing in my life."',
+    ],
+  },
+  {
+    name: 'Amanda Assif',
+    role: 'Account Executive & Notary Public',
+    location: 'Elements Title and Escrow | Celebration, FL',
+    image: '/amanda-assif.png',
+    bio: [
+      'With over six years of experience in the real estate market, Amanda Assif brings a wealth of knowledge and expertise to her role. Her career is supported by an impressive ten years of experience in customer service, event planning, and marketing, making her a versatile and highly skilled professional.',
+      'Amanda has also excelled in leadership positions, having served as a trainer and supervisor for major organizations such as Booking.com, Chase Bank, and Hilton Grand Vacations. This unique blend of customer service, management, and real estate knowledge enables Amanda to effectively serve her clients and create seamless experiences in her current role.',
+    ],
+  },
+]
 
 function App() {
   const [page, setPage] = useState('home') // 'home' | 'order' | 'contact'
@@ -181,6 +214,12 @@ function App() {
               Services
             </button>
             <button
+              onClick={() => scrollToSection('team')}
+              className="hidden md:inline text-stone-300 hover:text-white text-sm font-medium transition"
+            >
+              Team
+            </button>
+            <button
               onClick={() => navigate('contact')}
               className="hidden md:inline text-stone-300 hover:text-white text-sm font-medium transition"
             >
@@ -222,6 +261,15 @@ function App() {
                 className="text-stone-300 hover:text-white text-left text-sm font-medium py-2 border-b border-white/5"
               >
                 Services
+              </button>
+              <button
+                onClick={() => {
+                  setIsMobileMenuOpen(false)
+                  scrollToSection('team')
+                }}
+                className="text-stone-300 hover:text-white text-left text-sm font-medium py-2 border-b border-white/5"
+              >
+                Team
               </button>
               <button
                 onClick={() => {
@@ -386,7 +434,60 @@ function App() {
         </div>
       </section>
 
-      {/* 4. LICENSED IN GEORGIA & FLORIDA (LOCATIONS) */}
+      {/* 4. TEAM SECTION */}
+      <section id="team" className="bg-[#fafaf6] py-24 px-6 border-t border-stone-200/50">
+        <div className="max-w-7xl mx-auto">
+          <div className="max-w-3xl mx-auto text-center mb-14">
+            <p className="text-sm font-bold uppercase tracking-[0.24em] text-[#44a77e] mb-3">
+              Our Team
+            </p>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-[#3d4f45] tracking-tight mb-5">
+              Meet the people behind your closing
+            </h2>
+            <p className="text-base md:text-lg text-stone-600 leading-relaxed">
+              Experienced title, escrow, and client service professionals guiding every file with care, communication, and local expertise.
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-3 gap-8 items-start">
+            {TEAM_MEMBERS.map((member) => (
+              <article
+                key={member.name}
+                className="bg-white border border-stone-200/80 rounded-lg shadow-sm overflow-hidden flex flex-col h-full"
+              >
+                <div className="aspect-[4/5] bg-stone-100 overflow-hidden">
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="w-full h-full object-cover object-top"
+                  />
+                </div>
+                <div className="p-6 md:p-7 flex flex-col flex-grow">
+                  <div className="pb-5 mb-5 border-b border-stone-200">
+                    <h3 className="text-2xl font-extrabold text-[#3d4f45] leading-tight">
+                      {member.name}
+                    </h3>
+                    <p className="text-sm font-bold uppercase tracking-wider text-[#44a77e] mt-2">
+                      {member.role}
+                    </p>
+                    {member.location && (
+                      <p className="text-sm text-stone-500 mt-2">
+                        {member.location}
+                      </p>
+                    )}
+                  </div>
+                  <div className="space-y-4 text-sm leading-relaxed text-stone-600 font-light">
+                    {member.bio.map((paragraph) => (
+                      <p key={paragraph}>{paragraph}</p>
+                    ))}
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+      {/* 5. LICENSED IN GEORGIA & FLORIDA (LOCATIONS) */}
       <section className="bg-[#fafaf6] py-20 px-6">
         <div className="max-w-7xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-extrabold text-[#3d4f45] mb-4 tracking-tight">
@@ -445,7 +546,7 @@ function App() {
         </div>
       </section>
 
-      {/* 5. STATE DETAILED COVERAGE SECTION */}
+      {/* 6. STATE DETAILED COVERAGE SECTION */}
       <section className="bg-[#fafaf6] py-16 px-6 border-t border-stone-200/50">
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 text-left">
           {/* Georgia Details */}
@@ -466,7 +567,7 @@ function App() {
         </div>
       </section>
 
-      {/* 6. CONTACT SECTION (ABOVE FOOTER) */}
+      {/* 7. CONTACT SECTION (ABOVE FOOTER) */}
       <section className="bg-[#fafaf6] py-20 px-6 border-t border-stone-200/50">
         <div className="max-w-4xl mx-auto text-center space-y-6">
           <h2 className="text-3xl md:text-4xl font-extrabold tracking-widest text-[#3d4f45]">
@@ -516,7 +617,7 @@ function App() {
         </div>
       </footer>
 
-      {/* 7. WIDGETS & POPUPS (BOTTOM-RIGHT) */}
+      {/* 8. WIDGETS & POPUPS (BOTTOM-RIGHT) */}
       <div className="fixed bottom-6 right-6 z-40 flex items-center gap-3">
         {/* Quote Pop-up Box */}
         {isQuoteVisible && (
@@ -556,7 +657,7 @@ function App() {
         </button>
       </div>
 
-      {/* 8. MODALS */}
+      {/* 9. MODALS */}
 
       {/* INSTANT CLOSING QUOTE CALCULATOR MODAL */}
       {isModalOpen && (
@@ -698,5 +799,12 @@ function App() {
 }
 
 export default App
+
+
+
+
+
+
+
 
 
