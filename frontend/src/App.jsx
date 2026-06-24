@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
+import { getApiBaseUrl } from './lib/apiBase'
 import OrderForm from './OrderForm'
 import ContactPage from './ContactPage'
 import AdminDashboard from './AdminDashboard'
 
-const baseURL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+const baseURL = getApiBaseUrl()
 
 
 // Locally hosted real estate images for background slideshow
@@ -802,6 +803,7 @@ function App() {
 }
 
 export default App
+
 
 
 

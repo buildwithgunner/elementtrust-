@@ -1,6 +1,7 @@
 import { useState } from 'react'
+import { getApiBaseUrl } from './lib/apiBase'
 
-const baseURL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+const baseURL = getApiBaseUrl()
 
 // ─── Shared input style ───────────────────────────────────────────────────
 const inputCls = (err) =>
@@ -409,3 +410,4 @@ export default function AdminLogin({ onBack, onLogin }) {
 
 // ─── NAMED EXPORT: SignupForm for use inside Admin Dashboard ───────────────
 export { SignupForm }
+

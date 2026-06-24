@@ -1,6 +1,7 @@
 import { useState, useRef, createContext, useContext } from 'react'
+import { getApiBaseUrl } from './lib/apiBase'
 
-const baseURL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+const baseURL = getApiBaseUrl()
 
 const FormContext = createContext(null)
 
@@ -596,4 +597,5 @@ export default function OrderForm({ onBack, contactEmail = 'orders@example.com',
     </FormContext.Provider>
   )
 }
+
 

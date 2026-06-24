@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
+import { getApiBaseUrl } from './lib/apiBase'
 import AdminLogin, { SignupForm } from './AdminLogin'
 
-const baseURL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+const baseURL = getApiBaseUrl()
 
 
 export default function AdminDashboard({ onBack, contactEmail = 'orders@example.com', contactPhone = '(352) 450-3211', onSettingsUpdate }) {
@@ -694,6 +695,7 @@ export default function AdminDashboard({ onBack, contactEmail = 'orders@example.
     </div>
   )
 }
+
 
 
 
