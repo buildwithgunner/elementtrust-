@@ -1,0 +1,11 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+
+    # Deny access to sensitive files
+    RedirectMatch 403 /\.(env|git|txt|json|yml|yaml|md|lock)$
+    RedirectMatch 403 /(app|bootstrap|config|database|resources|routes|storage|tests|vendor)
+
+    # Rewrite requests to the public directory
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
