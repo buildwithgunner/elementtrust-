@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react'
 import AdminLogin, { SignupForm } from './AdminLogin'
 
+const baseURL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+
+
 export default function AdminDashboard({ onBack, contactEmail = 'orders@example.com', contactPhone = '(352) 450-3211', onSettingsUpdate }) {
   const [token, setToken] = useState(localStorage.getItem('elements_admin_auth_token') || '')
   const [admin, setAdmin] = useState(() => {
@@ -44,7 +47,7 @@ export default function AdminDashboard({ onBack, contactEmail = 'orders@example.
     setLoading(true)
     setError('')
     try {
-      const response = await fetch('http://localhost:8000/api/admin/orders', {
+      const response = await fetch(`${baseURL}/api/admin/orders`, {
         headers: {
           'Authorization': `Bearer ${adminToken}`,
           'Accept': 'application/json'
@@ -94,7 +97,7 @@ export default function AdminDashboard({ onBack, contactEmail = 'orders@example.
   const handleUpdateStatus = async (orderId, newStatus) => {
     setUpdatingStatusId(orderId)
     try {
-      const response = await fetch(`http://localhost:8000/api/admin/orders/${orderId}/status`, {
+      const response = await fetch(`${baseURL}/api/admin/orders/${orderId}/status`, {
         method: 'PATCH',
         headers: {
           ...adminHeaders(),
@@ -128,7 +131,7 @@ export default function AdminDashboard({ onBack, contactEmail = 'orders@example.
     setSavingSettings(true)
     setSettingsMessage('')
     try {
-      const response = await fetch('http://localhost:8000/api/admin/settings', {
+      const response = await fetch(`${baseURL}/api/admin/settings`, {
         method: 'PATCH',
         headers: {
           ...adminHeaders(),
@@ -164,7 +167,7 @@ export default function AdminDashboard({ onBack, contactEmail = 'orders@example.
     }
 
     try {
-      const response = await fetch(`http://localhost:8000/api/admin/orders/${orderId}`, {
+      const response = await fetch(`${baseURL}/api/admin/orders/${orderId}`, {
         method: 'DELETE',
         headers: {
           ...adminHeaders(),
@@ -647,7 +650,7 @@ export default function AdminDashboard({ onBack, contactEmail = 'orders@example.
                     {selectedOrder.files && selectedOrder.files.length > 0 ? (
                       <ul className="space-y-2">
                         {selectedOrder.files.map((file, idx) => {
-                          const downloadUrl = `http://localhost:8000${file.path}`;
+                          const downloadUrl = `${baseURL}${file.path}`;
                           return (
                             <li key={idx} className="flex items-center justify-between border border-stone-200 rounded px-3 py-2 bg-stone-50">
                               <span className="truncate text-stone-700 text-xs max-w-[70%]" title={file.name}>

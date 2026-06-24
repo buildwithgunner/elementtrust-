@@ -1,4 +1,96 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, createContext, useContext } from 'react'
+
+const baseURL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+
+const FormContext = createContext(null)
+
+const Label = ({ children, required }) => (
+  <label className="block text-xs font-semibold uppercase tracking-wider text-stone-500 mb-1">
+    {children} {required && <span className="text-red-500">*</span>}
+  </label>
+)
+
+const Input = ({ field, type = 'text', hint, phoneFormat, placeholder = '' }) => {
+  const { form, setForm, set, errors } = useContext(FormContext)
+  const handlePhoneInput = (e) => {
+    let val = e.target.value.replace(/\D/g, '')
+    if (val.length > 10) val = val.substring(0, 10)
+    let formatted = val
+    if (val.length > 3) {
+      formatted = `(${val.substring(0, 3)}) ${val.substring(3)}`
+    }
+    if (val.length > 6) {
+      formatted = `(${val.substring(0, 3)}) ${val.substring(3, 6)}-${val.substring(6)}`
+    }
+    setForm(prev => ({ ...prev, [field]: formatted }))
+  }
+
+  return (
+    <div>
+      <input
+        type={type}
+        value={form[field]}
+        onChange={phoneFormat ? handlePhoneInput : set(field)}
+        placeholder={placeholder}
+        className={`w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1e3a5f]/40 transition bg-white ${
+          errors[field] ? 'border-red-400' : 'border-stone-300'
+        }`}
+      />
+      {hint && <p className="text-[10px] text-stone-400 mt-1 leading-relaxed">{hint}</p>}
+      {errors[field] && (
+        <p className="text-red-500 text-xs mt-1 field-error">{errors[field]}</p>
+      )}
+    </div>
+  )
+}
+
+const RadioGroup = ({ field, options }) => {
+  const { form, set, errors } = useContext(FormContext)
+  return (
+    <div className="flex flex-col gap-2 mt-2">
+      {options.map((opt) => (
+        <label key={opt} className="inline-flex items-center text-sm text-stone-700 cursor-pointer">
+          <input
+            type="radio"
+            name={field}
+            value={opt}
+            checked={form[field] === opt}
+            onChange={set(field)}
+            className="w-4 h-4 text-[#1e3a5f] border-stone-300 focus:ring-[#1e3a5f]/40 mr-2"
+          />
+          {opt}
+        </label>
+      ))}
+      {errors[field] && (
+        <p className="text-red-500 text-xs field-error">{errors[field]}</p>
+      )}
+    </div>
+  )
+}
+
+const Select = ({ field, options, placeholder = 'Please Select' }) => {
+  const { form, set, errors } = useContext(FormContext)
+  return (
+    <div>
+      <select
+        value={form[field]}
+        onChange={set(field)}
+        className={`w-full border rounded px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1e3a5f]/40 transition bg-white ${
+          errors[field] ? 'border-red-400' : 'border-stone-300'
+        }`}
+      >
+        <option value="">{placeholder}</option>
+        {options.map((o) => (
+          <option key={o} value={o}>{o}</option>
+        ))}
+      </select>
+      {errors[field] && (
+        <p className="text-red-500 text-xs mt-1 field-error">{errors[field]}</p>
+      )}
+    </div>
+  )
+}
+
 
 export default function OrderForm({ onBack, contactEmail = 'orders@example.com', contactPhone = '(352) 450-3211' }) {
   const [form, setForm] = useState({
@@ -125,7 +217,7 @@ export default function OrderForm({ onBack, contactEmail = 'orders@example.com',
         formData.append('files[]', file)
       })
 
-      const response = await fetch('http://localhost:8000/api/orders', {
+      const response = await fetch(`${baseURL}/api/orders`, {
         method: 'POST',
         body: formData,
         headers: {
@@ -188,85 +280,7 @@ export default function OrderForm({ onBack, contactEmail = 'orders@example.com',
     }
   }
 
-  const Label = ({ children, required }) => (
-    <label className="block text-xs font-semibold uppercase tracking-wider text-stone-500 mb-1">
-      {children} {required && <span className="text-red-500">*</span>}
-    </label>
-  )
-
-  const Input = ({ field, type = 'text', hint, phoneFormat, placeholder = '' }) => {
-    const handlePhoneInput = (e) => {
-      let val = e.target.value.replace(/\D/g, '')
-      if (val.length > 10) val = val.substring(0, 10)
-      let formatted = val
-      if (val.length > 3) {
-        formatted = `(${val.substring(0, 3)}) ${val.substring(3)}`
-      }
-      if (val.length > 6) {
-        formatted = `(${val.substring(0, 3)}) ${val.substring(3, 6)}-${val.substring(6)}`
-      }
-      setForm(prev => ({ ...prev, [field]: formatted }))
-    }
-
-    return (
-      <div>
-        <input
-          type={type}
-          value={form[field]}
-          onChange={phoneFormat ? handlePhoneInput : set(field)}
-          placeholder={placeholder}
-          className={`w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1e3a5f]/40 transition bg-white ${
-            errors[field] ? 'border-red-400' : 'border-stone-300'
-          }`}
-        />
-        {hint && <p className="text-[10px] text-stone-400 mt-1 leading-relaxed">{hint}</p>}
-        {errors[field] && (
-          <p className="text-red-500 text-xs mt-1 field-error">{errors[field]}</p>
-        )}
-      </div>
-    )
-  }
-
-  const RadioGroup = ({ field, options }) => (
-    <div className="flex flex-col gap-2 mt-2">
-      {options.map((opt) => (
-        <label key={opt} className="inline-flex items-center text-sm text-stone-700 cursor-pointer">
-          <input
-            type="radio"
-            name={field}
-            value={opt}
-            checked={form[field] === opt}
-            onChange={set(field)}
-            className="w-4 h-4 text-[#1e3a5f] border-stone-300 focus:ring-[#1e3a5f]/40 mr-2"
-          />
-          {opt}
-        </label>
-      ))}
-      {errors[field] && (
-        <p className="text-red-500 text-xs field-error">{errors[field]}</p>
-      )}
-    </div>
-  )
-
-  const Select = ({ field, options, placeholder = 'Please Select' }) => (
-    <div>
-      <select
-        value={form[field]}
-        onChange={set(field)}
-        className={`w-full border rounded px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1e3a5f]/40 transition bg-white ${
-          errors[field] ? 'border-red-400' : 'border-stone-300'
-        }`}
-      >
-        <option value="">{placeholder}</option>
-        {options.map((o) => (
-          <option key={o} value={o}>{o}</option>
-        ))}
-      </select>
-      {errors[field] && (
-        <p className="text-red-500 text-xs mt-1 field-error">{errors[field]}</p>
-      )}
-    </div>
-  )
+  // Helper components moved outside
 
   // ── Success screen ───────────────────────────────────────────────────────
   if (submitted) {
@@ -306,7 +320,8 @@ export default function OrderForm({ onBack, contactEmail = 'orders@example.com',
 
   // ── Main form ────────────────────────────────────────────────────────────
   return (
-    <div className="min-h-screen bg-[#eef0f8] font-sans">
+    <FormContext.Provider value={{ form, setForm, set, errors }}>
+      <div className="min-h-screen bg-[#eef0f8] font-sans">
       <header className="bg-[#0f1f17] border-b border-white/10 py-3 sm:py-4 px-4 sm:px-6 flex items-center justify-between shadow-lg">
         <button
           onClick={onBack}
@@ -578,6 +593,7 @@ export default function OrderForm({ onBack, contactEmail = 'orders@example.com',
         </form>
       </main>
     </div>
+    </FormContext.Provider>
   )
 }
 

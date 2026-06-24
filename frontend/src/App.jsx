@@ -3,6 +3,9 @@ import OrderForm from './OrderForm'
 import ContactPage from './ContactPage'
 import AdminDashboard from './AdminDashboard'
 
+const baseURL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+
+
 // Locally hosted real estate images for background slideshow
 const BACKGROUND_IMAGES = [
   '/hero1.png',
@@ -55,7 +58,7 @@ function App() {
   const [contactPhone, setContactPhone] = useState('(352) 450-3211')
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/settings')
+    fetch(`${baseURL}/api/settings`)
       .then((res) => {
         if (res.ok) return res.json()
         throw new Error('Failed to fetch settings')

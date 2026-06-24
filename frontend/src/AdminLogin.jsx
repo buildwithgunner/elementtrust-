@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+const baseURL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+
 // ─── Shared input style ───────────────────────────────────────────────────
 const inputCls = (err) =>
   `w-full border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 transition bg-white ${
@@ -37,7 +39,7 @@ function LoginForm({ onLogin, onBack }) {
     setError('')
 
     try {
-      const res  = await fetch('http://localhost:8000/api/admin/login', {
+      const res  = await fetch(`${baseURL}/api/admin/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({ email: email.trim().toLowerCase(), password }),
@@ -176,7 +178,7 @@ function SignupForm({ token, onSuccess, onCancel }) {
     setSuccess('')
 
     try {
-      const res  = await fetch('http://localhost:8000/api/admin/register', {
+      const res  = await fetch(`${baseURL}/api/admin/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
