@@ -17,7 +17,7 @@ return [
 
     'paths' => ['api/*', 'sanctum/csrf-cookie'],
 
-    'allowed_methods' => ['*'],
+    'allowed_methods' => ['https://elementtrust-d1u1.vercel.app'],
 
     'allowed_origins' => ['*'],
 
