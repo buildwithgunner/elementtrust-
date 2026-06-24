@@ -1,3 +1,12 @@
+<IfModule mod_headers.c>
+    SetEnvIf Origin "^http(s)?://(.*\.)?elementtrust-d1u1\.vercel\.app$" AccessControlAllowOrigin=$0
+    SetEnvIf Origin "^http(s)?://(.*\.)?daniel-moses-projects-002b719c\.vercel\.app$" AccessControlAllowOrigin=$0
+    Header set Access-Control-Allow-Origin %{AccessControlAllowOrigin}e env=AccessControlAllowOrigin
+    Header set Access-Control-Allow-Credentials "true"
+    Header set Access-Control-Allow-Methods "GET, POST, OPTIONS, PUT, PATCH, DELETE"
+    Header set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+</IfModule>
+
 <IfModule mod_rewrite.c>
     <IfModule mod_negotiation.c>
         Options -MultiViews -Indexes
