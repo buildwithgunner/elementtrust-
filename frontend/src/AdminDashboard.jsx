@@ -651,7 +651,7 @@ export default function AdminDashboard({ onBack, contactEmail = 'orders@example.
                     {selectedOrder.files && selectedOrder.files.length > 0 ? (
                       <ul className="space-y-2">
                         {selectedOrder.files.map((file, idx) => {
-                          const downloadUrl = `${baseURL}${file.path}`;
+                          const downloadUrl = `${baseURL}${file.path}?token=${token}`;
                           return (
                             <li key={idx} className="flex items-center justify-between border border-stone-200 rounded px-3 py-2 bg-stone-50">
                               <span className="truncate text-stone-700 text-xs max-w-[70%]" title={file.name}>
