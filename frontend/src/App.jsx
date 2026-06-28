@@ -37,13 +37,14 @@ const TEAM_MEMBERS = [
     ],
   },
   {
-    name: 'Amanda Assif',
+    name: 'Sydney Kayla Jessica Ryan',
     role: 'Account Executive & Notary Public',
     location: 'Elements Title and Escrow | Celebration, FL',
+    socialLink: 'https://www.instagram.com/elements_title?igsh=Ymd3YmVkajZzaXFy&utm_source=qr',
     image: '/amanda-assif.png',
     bio: [
-      'With over six years of experience in the real estate market, Amanda Assif brings a wealth of knowledge and expertise to her role. Her career is supported by an impressive ten years of experience in customer service, event planning, and marketing, making her a versatile and highly skilled professional.',
-      'Amanda has also excelled in leadership positions, having served as a trainer and supervisor for major organizations such as Booking.com, Chase Bank, and Hilton Grand Vacations. This unique blend of customer service, management, and real estate knowledge enables Amanda to effectively serve her clients and create seamless experiences in her current role.',
+      'With over six years of experience in the real estate market, Sydney Kayla Jessica Ryan brings a wealth of knowledge and expertise to her role. Her career is supported by an impressive ten years of experience in customer service, event planning, and marketing, making her a versatile and highly skilled professional.',
+      'Sydney has also excelled in leadership positions, having served as a trainer and supervisor for major organizations such as Booking.com, Chase Bank, and Hilton Grand Vacations. This unique blend of customer service, management, and real estate knowledge enables her to effectively serve clients and create seamless experiences in her current role.',
     ],
   },
 ]
@@ -334,7 +335,7 @@ function App() {
             We're here to help you thrive!
           </h2>
           <p className="text-base md:text-lg text-stone-600 leading-relaxed max-w-3xl mx-auto mb-12">
-            At Elements Title Group, we provide title, escrow, and settlement services statewide. Whether you're buying your first home in Miami, refinancing in Orlando, or closing on an investment in Macon, we're here to make the process simple, secure, and stress-free. We are licensed in Florida & Georgia with over 20+ years of experience. We know your real estate closing is one of the most important transactions of your life; that's why we sweat the small stuff, so you don't have to.
+            At Elements Title Group, we provide title, escrow, and settlement services statewide. Whether you're buying your first home in Miami, refinancing in Orlando, or closing on an investment in Macon, we're here to make the process simple, secure, and stress-free. We are licensed in Florida, Georgia, and Utah with over 20+ years of experience. We know your real estate closing is one of the most important transactions of your life; that's why we sweat the small stuff, so you don't have to.
           </p>
 
           {/* Checkmarks list styled like screenshot */}
@@ -474,6 +475,16 @@ function App() {
                     <p className="text-sm font-bold uppercase tracking-wider text-[#44a77e] mt-2">
                       {member.role}
                     </p>
+                    {member.socialLink && (
+                      <a
+                        href={member.socialLink}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-sm font-semibold text-[#44a77e] mt-2 hover:text-[#2f7d5a] underline underline-offset-2"
+                      >
+                        Instagram
+                      </a>
+                    )}
                     {member.location && (
                       <p className="text-sm text-stone-500 mt-2">
                         {member.location}
@@ -495,13 +506,13 @@ function App() {
       <section className="bg-[#fafaf6] py-20 px-6">
         <div className="max-w-7xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-extrabold text-[#3d4f45] mb-4 tracking-tight">
-            Licensed in Georgia & Florida And Other States 
+            Licensed in Georgia, Florida & Utah And Other States 
           </h2>
           <p className="text-lg text-stone-600 font-light mb-2 max-w-3xl mx-auto">
             From city skylines to sandy shores—our team makes closing happen wherever you are.
           </p>
           <p className="text-sm md:text-base text-stone-500 max-w-4xl mx-auto mb-16 leading-relaxed">
-            Serving all of Georgia and Florida with licensed offices and mobile closings to meet the needs of REALTORS&reg;, lenders, buyers, sellers, and investors.
+            Serving all of Georgia, Florida, and Utah with licensed offices and mobile closings to meet the needs of REALTORS&reg;, lenders, buyers, sellers, and investors.
           </p>
 
           {/* Grid: 3 columns (Atlanta Image | Addresses Block | Florida Image) */}
@@ -616,7 +627,7 @@ function App() {
             />
           </div>
           <p className="text-sm text-stone-400">
-            &copy; 2026 Elements Title Group. Licensed in Florida & Georgia. All rights reserved.
+            &copy; 2026 Elements Title Group. Licensed in Florida, Georgia, and Utah. All rights reserved.
           </p>
         </div>
       </footer>
@@ -803,13 +814,4 @@ function App() {
 }
 
 export default App
-
-
-
-
-
-
-
-
-
 
