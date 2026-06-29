@@ -337,7 +337,7 @@ export default function OrderForm({ onBack, contactEmail = 'orders@example.com',
         {/* Logo */}
         <div className="flex items-center justify-center">
           <img
-            src="/logo.png"
+            src="/logo.jpeg"
             alt="Elements Title & Trust Group"
             className="h-24 sm:h-32 w-auto object-contain"
             style={{ filter: 'invert(1)' }}
@@ -597,6 +597,4 @@ export default function OrderForm({ onBack, contactEmail = 'orders@example.com',
     </FormContext.Provider>
   )
 }
-
-
 

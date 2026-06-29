@@ -204,7 +204,7 @@ function App() {
           {/* Logo container */}
           <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigate('home')}>
             <img
-              src="/logo.png"
+              src="/logo.jpeg"
               alt="Elements Title &amp; Trust Group"
               className="h-28 md:h-36 w-auto object-contain"
               style={{ filter: 'invert(1)' }}
@@ -632,7 +632,7 @@ function App() {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex items-center">
             <img
-              src="/logo.png"
+              src="/logo.jpeg"
               alt="Elements Title & Trust Group"
               className="h-20 w-auto object-contain opacity-95"
               style={{ filter: 'invert(1)' }}
@@ -832,6 +832,4 @@ function App() {
 }
 
 export default App
-
-
 
