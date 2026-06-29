@@ -373,7 +373,7 @@ export default function AdminLogin({ onBack, onLogin }) {
             <div className="flex justify-center mb-4">
               <div className="bg-white/10 rounded-xl p-2 backdrop-blur-sm">
                 <img
-                  src="/logo.jpeg"
+                  src="/logo.png"
                   alt="Elements Title Group"
                   className="h-16 w-auto object-contain brightness-0 invert"
                 />

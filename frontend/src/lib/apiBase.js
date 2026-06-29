@@ -25,13 +25,15 @@ function ensureHttps(url) {
 }
 
 export function getApiBaseUrl() {
-  const configured = import.meta.env.VITE_API_URL
-
+  const configured = import.meta.env.VITE_API_URL;
   if (configured) {
-    return ensureHttps(configured)
+    // Use the configured API URL as is, trimming trailing slash.
+    return configured.replace(/\/$/, "");
   }
-
-  return window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-    ? 'http://localhost:8000'
-    : `${window.location.origin}`
+  // Development: use localhost backend
+  if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
+    return "http://localhost:8000";
+  }
+  // Production: same origin as frontend
+  return `${window.location.origin}`;
 }

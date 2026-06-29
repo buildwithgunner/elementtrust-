@@ -48,7 +48,7 @@ export default function ContactPage({ onBack, onOrderClick, contactEmail = 'orde
         <header className="bg-[#26382f] border-b border-white/10 shadow-lg py-3 px-6 flex items-center justify-between">
           <button onClick={onBack} className="flex items-center">
             <img
-              src="/logo.jpeg"
+              src="/logo.png"
               alt="Elements Title Group"
               className="h-24 w-auto object-contain brightness-0 invert"
             />
@@ -91,7 +91,7 @@ export default function ContactPage({ onBack, onOrderClick, contactEmail = 'orde
       <header className="bg-[#26382f] border-b border-white/10 shadow-lg py-3 px-6 flex items-center justify-between">
         <button onClick={onBack} className="flex items-center">
           <img
-            src="/logo.jpeg"
+            src="/logo.png"
             alt="Elements Title Group"
             className="h-24 sm:h-32 w-auto object-contain"
             style={{ filter: 'invert(1)' }}

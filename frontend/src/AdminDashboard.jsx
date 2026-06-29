@@ -220,7 +220,7 @@ export default function AdminDashboard({ onBack, contactEmail = 'orders@example.
       <header className="bg-[#26382f] border-b border-white/10 sticky top-0 z-30 shadow-lg px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-3">
           <img
-            src="/logo.jpeg"
+            src="/logo.png"
             alt="Elements Logo"
             className="h-24 w-auto object-contain"
             style={{ filter: 'invert(1)' }}
