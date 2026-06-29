@@ -40,7 +40,6 @@ const TEAM_MEMBERS = [
     name: 'Sydney Kayla Jessica Ryan',
     role: 'Account Executive & Notary Public',
     location: 'Elements Title and Escrow | Celebration, FL',
-    socialLink: 'https://www.instagram.com/elements_title?igsh=Ymd3YmVkajZzaXFy&utm_source=qr',
     image: '/amanda-assif.png',
     bio: [
       'With over six years of experience in the real estate market, Sydney Kayla Jessica Ryan brings a wealth of knowledge and expertise to her role. Her career is supported by an impressive ten years of experience in customer service, event planning, and marketing, making her a versatile and highly skilled professional.',
@@ -476,16 +475,6 @@ function App() {
                     <p className="text-sm font-bold uppercase tracking-wider text-[#44a77e] mt-2">
                       {member.role}
                     </p>
-                    {member.socialLink && (
-                      <a
-                        href={member.socialLink}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="text-sm font-semibold text-[#44a77e] mt-2 hover:text-[#2f7d5a] underline underline-offset-2"
-                      >
-                        Instagram
-                      </a>
-                    )}
                     {member.location && (
                       <p className="text-sm text-stone-500 mt-2">
                         {member.location}
@@ -832,4 +821,5 @@ function App() {
 }
 
 export default App
+
 
