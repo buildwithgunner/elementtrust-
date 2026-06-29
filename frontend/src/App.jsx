@@ -57,7 +57,8 @@ function App() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [contactEmail, setContactEmail] = useState('orders@example.com')
-  const [contactPhone, setContactPhone] = useState('(352) 450-3211')
+  const [contactPhone, setContactPhone] = useState('254-400-8926')
+  const instagramUrl = 'https://www.instagram.com/elements_title?igsh=Ymd3YmVkajZzaXFy&utm_source=qr'
 
   useEffect(() => {
     fetch(`${baseURL}/api/settings`)
@@ -611,6 +612,17 @@ function App() {
                 {contactPhone}
               </a>
             </p>
+            <p>
+              Instagram:{' '}
+              <a
+                href={instagramUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="underline hover:text-[#2d3a33] transition font-extrabold"
+              >
+                @elements_title
+              </a>
+            </p>
           </div>
         </div>
       </section>
@@ -626,9 +638,15 @@ function App() {
               style={{ filter: 'invert(1)' }}
             />
           </div>
-          <p className="text-sm text-stone-400">
-            &copy; 2026 Elements Title Group. Licensed in Florida, Georgia, and Utah. All rights reserved.
-          </p>
+          <div className="text-center md:text-right text-sm text-stone-400 space-y-2">
+            <p>&copy; 2026 Elements Title Group. Licensed in Florida, Georgia, and Utah. All rights reserved.</p>
+            <p>
+              Instagram:{' '}
+              <a href={instagramUrl} target="_blank" rel="noreferrer" className="underline hover:text-stone-200 transition">
+                @elements_title
+              </a>
+            </p>
+          </div>
         </div>
       </footer>
 
@@ -814,4 +832,6 @@ function App() {
 }
 
 export default App
+
+
 

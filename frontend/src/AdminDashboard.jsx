@@ -5,7 +5,7 @@ import AdminLogin, { SignupForm } from './AdminLogin'
 const baseURL = getApiBaseUrl()
 
 
-export default function AdminDashboard({ onBack, contactEmail = 'orders@example.com', contactPhone = '(352) 450-3211', onSettingsUpdate }) {
+export default function AdminDashboard({ onBack, contactEmail = 'orders@example.com', contactPhone = '254-400-8926', onSettingsUpdate }) {
   const [token, setToken] = useState(localStorage.getItem('elements_admin_auth_token') || '')
   const [admin, setAdmin] = useState(() => {
     const storedAdmin = localStorage.getItem('elements_admin')
@@ -354,7 +354,7 @@ export default function AdminDashboard({ onBack, contactEmail = 'orders@example.
                   value={settingsPhone}
                   onChange={(e) => setSettingsPhone(e.target.value)}
                   className="w-full border border-stone-300 rounded p-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#3d4f45]/50 bg-white"
-                  placeholder="(352) 450-3211"
+                  placeholder="254-400-8926"
                 />
                 <p className="text-[11px] text-stone-400 mt-1">This phone/text number is displayed for phone calls and SMS reach-outs.</p>
               </div>
@@ -695,6 +695,7 @@ export default function AdminDashboard({ onBack, contactEmail = 'orders@example.
     </div>
   )
 }
+
 
 
 

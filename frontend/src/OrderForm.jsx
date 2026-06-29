@@ -93,7 +93,7 @@ const Select = ({ field, options, placeholder = 'Please Select' }) => {
 }
 
 
-export default function OrderForm({ onBack, contactEmail = 'orders@example.com', contactPhone = '(352) 450-3211' }) {
+export default function OrderForm({ onBack, contactEmail = 'orders@example.com', contactPhone = '254-400-8926' }) {
   const [form, setForm] = useState({
     firstName: '',
     lastName: '',
@@ -597,5 +597,6 @@ export default function OrderForm({ onBack, contactEmail = 'orders@example.com',
     </FormContext.Provider>
   )
 }
+
 
 
